@@ -2,11 +2,11 @@
 using namespace std;
 
 
-// here if student have a lot properties and some of them are not optional,
-// then we have to write many constructors for combination of those properties.
+//Here if student have a lot of properties and some of them are optional,
+//Then we have to write many constructors for the combination of those properties.
 
-// to overcome that we create a studentBuilder class that can help us create a student object step by step
-// by only add those properties that we need
+//To overcome that we create a studentBuilder class that can help us create a student object step by step
+// by only adding those properties that we need
 
 // Que. why not use setters instead of builder
 // Ans. we use setters to build a mutable object but builder to use immutable objects and they both can co-exist.
