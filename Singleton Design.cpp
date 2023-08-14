@@ -1,11 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// It is a creational design pattern used when we only need one instance of the class(eg: DB connection,Logger).
-// The constructor need to be private ,so no one can modify it
+// It is a creational design pattern used when we only need one instance of the class(eg: DB connection, Logger).
+// The constructor needs to be private,so no one can modify it
 
-// Egar loading
-// create instance of class as soon as app is up
+// lazy loading
+//Create an instance of a class only when some app module uses it
 
 class DBConnection {
 private:
@@ -25,7 +25,7 @@ public:
 	void operator=(const DBConnection &) = delete;
 
 	static DBConnection* getInstance(string name) {
-		// aquire the lock
+		// acquire the lock
 		unique_guard<mutex> lock(mtx);
 		if (instance == NULL) {
 			instance = new DBConnection(name);
@@ -39,7 +39,7 @@ public:
 
 
 	void someBusinessLogic() {
-		// some business logic here....
+		// some business logic here...
 	}
 };
 
