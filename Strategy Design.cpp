@@ -2,11 +2,11 @@
 using namespace std;
 
 
-// here instead of Vehicle class handling and implementing drive strategy
-// we created an abract class DriveStrategy and then implemented it with diff
+// Here instead of Vehicle class handling and implementing a driving strategy
+// We created an abstract class DriveStrategy and then implemented it with a diff
 // drive functionalities
 
-// so the object through constructor injection can create drive straegy at runtime
+// so the object through constructor injection can create a driving strategy at runtime
 // so strategy pattern is used to decide the behavior of objects at runtime
 
 
@@ -16,7 +16,7 @@ public:
 };
 
 
-// implementing drive strategy
+//Implementing drive strategy
 
 class NormalDrive: public DriveStrategy {
 public:
@@ -59,7 +59,7 @@ public:
 };
 
 
-// child of vehicle will decide which drive strategy they want
+// child of a vehicle will decide which drive strategy they want
 
 
 class SportCar: public Vehicle {
