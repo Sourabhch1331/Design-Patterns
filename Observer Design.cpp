@@ -7,8 +7,8 @@ using namespace std;
 // 1) Observable
 // 2) Observer
 
-//Here the observer observe the observable, if there is any change in data in the observable then
-// observable notify all observers that it stores in a list
+//Here the observer observes the observable, if there is any change in data in the observable then
+// observable notify all observer that it stores in a list
 
 
 // example: Walmart interview problem
@@ -23,8 +23,8 @@ public:
 // Interface
 class StockObservable {
 public:
-	virtual void add(NotificationAlertObserver* observer) = 0;
-	virtual void remove(NotificationAlertObserver* observer) = 0;
+	virtual void registerObserver(NotificationAlertObserver* observer) = 0;
+	virtual void unregisterObserver(NotificationAlertObserver* observer) = 0;
 	virtual void notifySubscribers() = 0;
 	virtual int getStockCount() = 0;
 	virtual void setStockCount(int newStockCount) = 0;
@@ -40,11 +40,11 @@ public:
 		this->stockCount = 0;
 	}
 
-	void add(NotificationAlertObserver* observer) {
+	void registerObserver(NotificationAlertObserver* observer) {
 		observerList->push_back(observer);
 	}
 
-	void remove(NotificationAlertObserver* observer) {
+	void unregisterObserver(NotificationAlertObserver* observer) {
 		observerList->remove(observer);
 	}
 
@@ -56,9 +56,10 @@ public:
 
 	void setStockCount(int newStockCount) {
 		if (stockCount == 0) {
+			stockCount = newStockCount;
 			notifySubscribers();
 		}
-		stockCount += newStockCount;
+		else stockCount += newStockCount;
 	}
 
 	int getStockCount() {
@@ -86,7 +87,9 @@ public:
 private:
 	void sendMail() {
 		cout << "Mail: Item is available in stock, Hurry up!\n";
-		cout << "Mail sent to :" << emailId << '\n';
+		cout << "Total " << observable->getStockCount() << " Items available.\n";
+		cout << "Mail sent to emailId:" << emailId << '\n';
+		cout << '\n';
 	}
 };
 
@@ -106,7 +109,9 @@ public:
 private:
 	void sendTextMessage() {
 		cout << "Message: Item is available in stock, Hurry up!\n";
-		cout << "Message sent to :" << phoneNumber << '\n';
+		cout << "Total " << observable->getStockCount() << " Items available.\n";
+		cout << "Message sent to phoneNumber:" << phoneNumber << '\n';
+		cout << '\n';
 	}
 };
 
@@ -118,10 +123,14 @@ int main() {
 	NotificationAlertObserver* customer1 = new EmailAlertObserver(iPhoneObservable, "sourabhchxyz@gmail.com");
 	NotificationAlertObserver* customer2 = new TextMessageObserver(iPhoneObservable, "881757xxxx");
 
-	iPhoneObservable->add(customer1);
-	iPhoneObservable->add(customer2);
+	iPhoneObservable->registerObserver(customer1);
+	iPhoneObservable->registerObserver(customer2);
 
 	iPhoneObservable->setStockCount(10);
 	iPhoneObservable->setStockCount(-10);
+
+	iPhoneObservable->unregisterObserver(customer1);
+
+
 	iPhoneObservable->setStockCount(1);
 }
