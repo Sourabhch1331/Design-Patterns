@@ -3,16 +3,16 @@
 using namespace std;
 
 
-// There are 2 main components in Observer design pattern
+// There are 2 main components in the Observer design pattern
 // 1) Observable
 // 2) Observer
 
-// here the observer observe the observable, if there are any change in data in observable then
-// obervable notify all obeserver that it stores in a list
+//Here the observer observe the observable, if there is any change in data in the observable then
+// observable notify all observers that it stores in a list
 
 
-// example: Walmart inteview problem
-// Design a Notify me Functionality
+// example: Walmart interview problem
+// Design a Notify Me Functionality
 
 // interface
 class NotificationAlertObserver {
@@ -122,4 +122,6 @@ int main() {
 	iPhoneObservable->add(customer2);
 
 	iPhoneObservable->setStockCount(10);
+	iPhoneObservable->setStockCount(-10);
+	iPhoneObservable->setStockCount(1);
 }
